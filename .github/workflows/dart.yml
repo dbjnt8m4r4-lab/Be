@@ -3,44 +3,31 @@ name: iOS-ipa-build
 on:
   workflow_dispatch:
 
-# ADD THESE PERMISSIONS AT THE WORKFLOW LEVEL
 permissions:
-  contents: write  # This gives permission to create releases
+  contents: write
 
 jobs:
   build-ios:
     name: 🎉 iOS Build
     runs-on: macos-latest
     
-    # OR ADD THEM AT THE JOB LEVEL
-    permissions:
-      contents: write
-      packages: write
-      statuses: write
-      
     steps:
       - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-
-      - name: Setup GitHub CLI
-        run: |
-          # GitHub CLI should already be installed on macOS runners
-          # But let's make sure it's configured properly
-          gh auth status || echo "GitHub CLI not authenticated"
 
       - uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
           architecture: x64
-      
       - run: flutter pub get
+
       - run: pod repo update
         working-directory: ios
+
       - run: flutter build ios --release --no-codesign
 
       - run: mkdir Payload
         working-directory: build/ios/iphoneos
+
       - run: mv Runner.app/ Payload
         working-directory: build/ios/iphoneos
 
@@ -48,16 +35,16 @@ jobs:
         run: zip -qq -r -9 FlutterIpaExport.ipa Payload
         working-directory: build/ios/iphoneos
 
-      - name: Create Release and Upload IPA
-        run: |
-          # First, create an empty release
-          gh release create v1.0 \
-            --title "Release v1.0" \
-            --notes "This is the first release" \
-            --draft=false \
-            --prerelease=false
-          
-          # Then upload the asset
-          gh release upload v1.0 build/ios/iphoneos/FlutterIpaExport.ipa
+      - name: Upload Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v1.0
+          name: Release v1.0
+          body: |
+            This is the first release
+          draft: false
+          prerelease: false
+          files: |
+            build/ios/iphoneos/FlutterIpaExport.ipa
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

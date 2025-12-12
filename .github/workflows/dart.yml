@@ -42,21 +42,12 @@ jobs:
           body: "This is first release"
             # ... (your previous steps: flutter build, zip, etc.)
 
-      - name: Create and push version tag (v1.0)
+      - name: Create Release and Upload IPA with GitHub CLI
         run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git tag -a v1.0 -m "Release v1.0"
-          git push origin v1.0
+          gh release create v1.0 \
+            --title "Release v1.0" \
+            --notes "This is the first release" \
+            build/ios/iphoneos/FlutterIpaExport.ipa
         env:
-          # Use your PAT for authentication
-          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
-
-      - name: Upload binaries to release
-        uses: svenstaro/upload-release-action@v2
-        with:
-          repo_token: ${{ secrets.RELEASE_TOKEN }}
-          file: build/ios/iphoneos/FlutterIpaExport.ipa
-          tag: v1.0
-          overwrite: true
-          body: "This is first release" 
+          # The CLI automatically uses this token
+          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}      

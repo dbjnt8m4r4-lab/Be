@@ -1,0 +1,138 @@
+﻿# VS Code History
+.history/
+
+# Flutter
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+.pubignore
+build/
+flutter_*.png
+*.iml
+*.so
+*.apk
+*.aab
+*.aar
+*.class
+*.lock
+*.log
+*.jar
+*.o
+*.obj
+*.dylib
+*.swp
+*.zip
+
+# iOS - Only ignore build artifacts, not source files
+ios/Pods/
+ios/DerivedData/
+ios/build/
+*.ipa
+ios/Runner.app
+ios/Runner.app.dSYM
+ios/*.xcworkspace/xcuserdata/
+ios/*.xcodeproj/xcuserdata/
+ios/Flutter/ephemeral/
+ios/Flutter/Generated.xcconfig
+ios/Flutter/flutter_export_environment.sh
+Podfile.lock
+*.mode1v3
+*.mode2v3
+*.moved-aside
+*.pbxuser
+*.perspectivev3
+*.xcuserstate
+*.xccheckout
+*.xcscmblueprint
+
+# Android
+android/.gradle/
+android/gradle-wrapper.jar
+android/local.properties
+android/key.properties
+android/**/GeneratedPluginRegistrant.java
+android/**/*.jks
+android/**/*.keystore
+android/captures/
+android/app/build/
+android/build/
+
+# IntelliJ / Android Studio
+.idea/
+*.iml
+*.iws
+.idea_modules/
+
+# Visual Studio Code
+.vscode/
+*.code-workspace
+
+# macOS
+.DS_Store
+*.swp
+*.swo
+*~
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
+
+# Coverage
+coverage/
+*.lcov
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Firebase
+.firebase/
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.backup
+
+# Project-specific
+dummy
+dummy2
+
+*~
+
+# Coverage
+coverage/
+*.lcov
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Firebase
+.firebase/
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.backup
+
+# Project-specific
+dummy
+dummy2
